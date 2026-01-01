@@ -3,28 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaternMal | Proxy Dashboard</title>
+    <title>PaternMal Dashboard</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <nav>
-        <div class="logo">PaternMal Dashboard</div>
+        <div class="logo">PaternMal</div>
         <div class="url-bar">
-            <input type="text" id="target-url" placeholder="https://example.com">
+            <input type="text" id="target-url" placeholder="Enter URL to browse via proxy (e.g., google.com)">
             <button onclick="browse()">Go</button>
         </div>
     </nav>
 
     <main>
-        <section class="card status-bar">
-            <span id="engine-state">Initializing Proxy...</span>
-            <span id="ping-display">Ping: --ms</span>
+        <section class="card status-container">
+            <div class="status-header">
+                <div id="engine-state">● Engine: Initializing...</div>
+                <div id="ping-display">Ping: --ms</div>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric">
+                    <span>Download Speed</span>
+                    <strong id="ping-val">0.00 Mbps</strong>
+                </div>
+                <div class="metric">
+                    <span>Local Port</span>
+                    <strong>8080</strong>
+                </div>
+            </div>
+
+            <button id="test-btn" onclick="runSpeedTest()">Run Proxy Performance Test</button>
+            <div id="speed-progress" class="progress-bar" style="display:none;">
+                <div class="progress-fill"></div>
+            </div>
         </section>
 
-        <div class="browser-container">
-            <iframe id="proxy-viewport" src="about:blank"></iframe>
-        </div>
+        <section class="browser-container">
+            <iframe id="proxy-viewport" name="proxy-viewport" src="about:blank"></iframe>
+        </section>
+
+        <section class="card">
+            <h3>Recent Activity</h3>
+            <ul id="request-log">
+                <li class="empty">Waiting for proxy traffic...</li>
+            </ul>
+        </section>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Use <strong>Node.js</strong> to test your proxy in this dashboard.</p>
+            <div class="node-hint">
+                <code>node paternmal.js --port 8080</code>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

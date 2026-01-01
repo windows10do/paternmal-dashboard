@@ -3,6 +3,8 @@ __Powered by [PaternMal](https://github.com/windows10do/PaternMal)__, the site i
 ### Proxy for beginners
 Proxy file is [here](plugin/node/paternmal.js) and packages is [here](plugin/node/packages.json). Run using:
 ```bash
+sudo apt update -y
+sudo apt install nodejs npm git -y
 git clone https://github.com/windows10do/paternmal-dashboard.git/
 cd paternmal-dashboard/plugin/node/
 npm install

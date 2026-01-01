@@ -1,0 +1,20 @@
+{
+  "name": "paternmal-proxy",
+  "version": "1.0.0",
+  "description": "Local proxy backend for PaternMal Dashboard",
+  "main": "paternmal.js",
+  "scripts": {
+    "start": "node paternmal.js --port 8080",
+    "dev": "node paternmal.js"
+  },
+  "keywords": [
+    "proxy",
+    "local-hosting",
+    "paternmal"
+  ],
+  "author": "windows10do",
+  "license": "MIT",
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}

@@ -1,0 +1,8 @@
+# PaternMal Dashboard
+__Powered by [PaternMal](github.com/windows10do/PaternMal)__, the site is already live [here](windows10do.github.io/paternmal-dashboard). Get ready to test your proxy.
+### Proxy for beginners
+Proxy file is [here](github.com/windows10do/paternmal-dashboard/plugin/node/paternmal.js). Run using:
+```bash
+node paternmal.js --port 8080
+```
+and finally ping in your dashboard.

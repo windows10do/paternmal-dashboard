@@ -1,5 +1,5 @@
 # PaternMal Dashboard
-__Powered by [PaternMal](https://github.com/windows10do/PaternMal)__, the site is already live [here](windows10do.github.io/paternmal-dashboard). Get ready to test your proxy.
+__Powered by [PaternMal](https://github.com/windows10do/PaternMal)__, the site is already live [here](https://windows10do.github.io/paternmal-dashboard). Get ready to test your proxy.
 ### Proxy for beginners
 Proxy file is [here](plugin/node/paternmal.js). Run using:
 ```bash

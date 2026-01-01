@@ -2,35 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - PaternMal Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .error-container {
-            text-align: center;
-            margin-top: 15vh;
+    <script>
+        const repo = '/paternmal-dashboard';
+        const path = window.location.pathname;
+        if (path.includes(repo + '/community')) {
+            window.location.replace(repo + '/?page=community');
+        } else {
+            window.location.replace(repo + '/');
         }
-        h1 { font-size: 5rem; color: var(--danger); margin-bottom: 10px; }
-        p { color: var(--text-dim); margin-bottom: 2rem; }
-        .back-btn {
-            display: inline-block;
-            text-decoration: none;
-            background: var(--primary);
-            color: var(--bg);
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="error-container">
-        <h1>404</h1>
-        <h2>PaternMal Dashboard</h2>
-        <p>The page you are looking for has been moved or doesn't exist.</p>
-        <a href="https://windows10do.github.io/paternmal-dashboard" class="back-btn">
-            Return to Dashboard
-        </a>
-    </div>
+    Redirecting to PaternMal Dashboard...
 </body>
 </html>

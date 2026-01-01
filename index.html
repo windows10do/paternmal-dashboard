@@ -10,8 +10,7 @@
             try {
                 const response = await fetch('https://ipapi.co/json/');
                 const data = await response.json();
-                const blockedCountries = ['CN', 'IR']; // China and Iran codes
-                
+                const blockedCountries = ['CN', 'IR']; 
                 if (blockedCountries.includes(data.country_code)) {
                     window.location.href = "403.html";
                 }
@@ -22,6 +21,9 @@
         checkLocation();
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,13 +31,17 @@
 
     <nav>
         <div class="logo">PaternMal</div>
-        <div class="url-bar">
+        <div class="nav-links">
+            <button onclick="navigateTo('dashboard')" class="nav-btn">Dashboard</button>
+            <button onclick="navigateTo('community')" class="nav-btn">Community</button>
+        </div>
+        <div class="url-bar" id="top-url-bar">
             <input type="text" id="target-url" placeholder="Enter URL to browse via proxy...">
             <button onclick="browse()">Go</button>
         </div>
     </nav>
 
-    <main>
+    <main id="dashboard-page">
         <section class="card status-container">
             <div class="status-header">
                 <div id="engine-state">● Engine: Initializing...</div>
@@ -70,6 +76,31 @@
             </ul>
         </section>
     </main>
+
+    <main id="community-page" style="display:none;">
+        <div class="card community-header">
+            <div class="header-flex">
+                <h2>Anonymous Community</h2>
+                <button class="post-trigger-btn" onclick="openModal()">+ Create Question</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="com-search" placeholder="Search discussions (Markdown supported)..." onkeyup="filterPosts()">
+            </div>
+        </div>
+        <div id="posts-container"></div>
+    </main>
+
+    <div id="post-modal" class="modal">
+        <div class="modal-content card">
+            <h3>Create Anonymous Post</h3>
+            <input type="text" id="post-title" placeholder="Question Title">
+            <textarea id="post-body" placeholder="Body (Markdown supported)"></textarea>
+            <div class="modal-actions">
+                <button onclick="submitPost()">Post Anonymously</button>
+                <button onclick="closeModal()" style="background: var(--border); margin-top: 10px;">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">

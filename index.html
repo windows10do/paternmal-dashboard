@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaternMal | Proxy Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">PaternMal Dashboard</div>
+        <div class="url-bar">
+            <input type="text" id="target-url" placeholder="https://example.com">
+            <button onclick="browse()">Go</button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="card status-bar">
+            <span id="engine-state">Initializing Proxy...</span>
+            <span id="ping-display">Ping: --ms</span>
+        </section>
+
+        <div class="browser-container">
+            <iframe id="proxy-viewport" src="about:blank"></iframe>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

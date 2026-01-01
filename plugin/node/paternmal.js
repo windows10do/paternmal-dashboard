@@ -1,51 +1,48 @@
 const http = require('http');
 const httpProxy = require('http-proxy');
 
-// Create a proxy server with custom logic
+// --- Argument Parsing ---
+const args = process.argv.slice(2);
+const portIndex = args.indexOf('--port');
+const PORT = (portIndex !== -1 && args[portIndex + 1]) ? args[portIndex + 1] : 8080;
+
 const proxy = httpProxy.createProxyServer({});
 
-const PORT = 8080;
-
 const server = http.createServer((req, res) => {
-    // 1. Set CORS headers so your GitHub Pages site can talk to this local script
+    // CORS Headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Handle preflight requests
     if (req.method === 'OPTIONS') {
         res.writeHead(200);
         res.end();
         return;
     }
 
-    // 2. Parse the target URL from the request
-    // The dashboard sends requests like: http://127.0.0.1:8080/https://google.com
     const targetUrl = req.url.startsWith('/') ? req.url.substring(1) : req.url;
 
     if (!targetUrl || !targetUrl.startsWith('http')) {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('PaternMal Proxy is Active and Waiting for Dashboard Traffic.');
+        res.end(`PaternMal Active on port ${PORT}`);
         return;
     }
 
-    console.log(`[PaternMal] Proxying request to: ${targetUrl}`);
+    console.log(`[PaternMal] Proxying: ${targetUrl}`);
 
-    // 3. Forward the request to the real destination
     proxy.web(req, res, { target: targetUrl, changeOrigin: true }, (e) => {
-        console.error(`[Error] Could not reach ${targetUrl}`);
         res.writeHead(502);
-        res.end('Proxy Error: Target Unreachable');
+        res.end('Proxy Error');
     });
 });
 
-console.log(`
-   PaternMal Local Proxy Initialized
+server.listen(PORT, () => {
+    console.log(`
+  PaternMal Local Proxy Initialized
   ------------------------------------
-  Listening on: http://127.0.0.1:${PORT}
+  Command:      node paternmal.js --port ${PORT}
   Dashboard:    windows10do.github.io/paternmal-dashboard
   
-  Status: Waiting for incoming tab traffic...
-`);
-
-server.listen(PORT);
+  Status: Listening for traffic on port ${PORT}...
+    `);
+});

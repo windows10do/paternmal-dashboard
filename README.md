@@ -3,7 +3,7 @@ __Powered by [PaternMal](https://github.com/windows10do/PaternMal)__, the site i
 ### Proxy for beginners
 Proxy file is [here](plugin/node/paternmal.js) and packages is [here](plugin/node/paternmal.js). Run using:
 ```bash
-
+npm install
 node paternmal.js --port 8080
 ```
 and finally ping in your dashboard.

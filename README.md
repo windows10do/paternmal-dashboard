@@ -4,6 +4,7 @@ __Powered by [PaternMal](https://github.com/windows10do/PaternMal)__, the site i
 Proxy file is [here](plugin/node/paternmal.js) and packages is [here](plugin/node/packages.json). Run using:
 ```bash
 git clone https://github.com/windows10do/paternmal-dashboard.git/
+cd paternmal-dashboard/plugin/node/
 npm install
 node paternmal.js --port 8080
 ```

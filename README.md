@@ -11,3 +11,14 @@ npm install
 node paternmal.js --port 8080
 ```
 and finally ping in your dashboard.
+
+> [!IMPORTANT]
+> PaternMal Dashboard is not for hackers.
+> 
+> For beginner purposes, check [here](https://github.com/windows10do/PaternMal) first.
+
+> [!NOTE]
+> PaternMal Dashboard requires the same [`paternmal.js`](plugin/node/paternmal.js) and [`packages.json`](plugin/node/packages.json).
+
+> [!TIP]
+> Now you can test performance, but mostly fails.

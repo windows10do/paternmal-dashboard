@@ -1,12 +1,13 @@
 const LOCAL_PROXY = 'http://127.0.0.1:8080';
 
 self.addEventListener('install', (event) => {
-    self.skipWaiting();
+    self.skipWaiting(); 
 });
 
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
 
+    // Intercept requests directed to the proxy gate
     if (url.pathname.startsWith('/proxy-gate')) {
         const target = url.searchParams.get('url');
         if (!target) return;
@@ -14,8 +15,7 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(
             fetch(`${LOCAL_PROXY}/${target}`, {
                 method: event.request.method,
-                headers: event.request.headers,
-                mode: 'no-cors'
+                headers: event.request.headers
             }).catch(() => {
                 return new Response(
                     "<h1>Proxy Connection Failed</h1><p>Ensure PaternMal is running locally on port 8080.</p>", 
@@ -25,6 +25,7 @@ self.addEventListener('fetch', (event) => {
         );
     }
     
+    // Internal health check for the dashboard UI
     if (url.pathname === '/paternmal-ping') {
         event.respondWith(
             fetch(LOCAL_PROXY, { mode: 'no-cors' })
